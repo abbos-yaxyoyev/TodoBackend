@@ -3,7 +3,8 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const dotenv = require('dotenv').config(); //? require(-r)
+// const dotenv = require('dotenv').config(); //? require(-r)
+const config = require('config');
 const app = express();
 
 require('express-async-errors');
@@ -38,5 +39,5 @@ app.get('/', (req, res) => {
 })
 console.log('55');
 
-const port = process.env.PORT
+const port = 3000;
 app.listen(port, () => logger.info('Server is running on port 3000...'))

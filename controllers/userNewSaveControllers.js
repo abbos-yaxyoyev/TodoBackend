@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const config = require('config');
 const { getUcerId, postCreatUcer } = require('../models/userModel');
 const { postCreatUcer_id } = require('../models/TodoListModules')
 const { validateUcer } = require('../utils/utils')
@@ -30,13 +31,11 @@ async function createUser(req, res) {
             password: hashedPassword,
         }
         const user = await postCreatUcer(newUser);
-        console.log('user saved', user);
         if (user) {
             postCreatUcer_id(user._id);
         }
         console.log('token1');
-        const token = jwt.sign({ _id: user._id }, secret, { expiresIn: '12d' })
-        console.log('tokenUser: ', token);
+        const token = jwt.sign({ _id: user._id }, config.get('SECRET_KEY'), { expiresIn: '12d' })
 
         res.status(200).send(JSON.stringify(token));
     }

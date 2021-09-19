@@ -1,12 +1,14 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const dotenv = require('dotenv').config();
+// const dotenv = require('dotenv').config();
+const config = require('config');
 const { findAuthUser } = require('../models/authModel');
 const { validateEmailPassword } = require('../utils/utils');
 console.log('0');
 async function loginAuth(req, res) {
     console.log('1');
-    const secret = process.env.SECRET_KEY
+    console.log(config.get('SECRET_KEY'));
+    // const secret = process.env.SECRET_KEY
     const { email, password } = req.body
     console.log('2');
     const { error } = validateEmailPassword(req.body);
@@ -25,7 +27,7 @@ async function loginAuth(req, res) {
         res.status(400).send({ message: 'Login or Password is incorrect' })
     }
     console.log('5');
-    const token = jwt.sign({ _id: user._id }, secret, { expiresIn: '12d' })
+    const token = jwt.sign({ _id: user._id }, config.get('SECRET_KEY'), { expiresIn: '12d' })
     res.status(200).send(JSON.stringify(token));
 
 }
