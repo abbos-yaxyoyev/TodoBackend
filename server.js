@@ -33,7 +33,7 @@ app.use('/api/todoList', checkUser, todoListRouter);
 console.log('44');
 app.use(errorStatus500);
 app.use(errorStatus404);
-app.get('/' function (req, res) {
+app.get('/', (req, res) => {
     res.send('Assalamu alaykum qadirdonlar')
 })
 console.log('55');
