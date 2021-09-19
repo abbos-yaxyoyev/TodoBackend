@@ -6,7 +6,7 @@ mongoose.connect("mongodb://localhost/todoListExpressJS", { useNewUrlParser: tru
         logger.debug("mongodbga ulanish muvaffaqiyatli amalga oshdi !!!");
     })
     .catch(err => {
-        logger.log(err.message);
+        logger.info(err.message);
     });
 
 const title = new mongoose.Schema(

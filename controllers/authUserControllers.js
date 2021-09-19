@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const dotenv = require('dotenv').config();
 const { findAuthUser } = require('../models/authModel');
 const { validateEmailPassword } = require('../utils/utils');
 console.log('0');
